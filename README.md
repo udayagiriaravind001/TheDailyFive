@@ -1,4 +1,4 @@
-# The Daily Five — Deployment Guide
+# The Daily Five - Deployment Guide
 
 Everything you need to get the site live in about 30 minutes.
 
