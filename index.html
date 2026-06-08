@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Five — Five verified UK jobs. Every morning.</title>
+<meta name="description" content="Five hand-verified UK jobs delivered every morning. No ghost jobs, no recruiter spam — just real roles direct from company career sites, with an AI prompt to tailor your CV in under a minute.">
+<meta property="og:title" content="The Daily Five — Five verified UK jobs. Every morning.">
+<meta property="og:description" content="No ghost jobs. No recruiter spam. Just five real roles, hand-checked, every morning.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thedailyfive.co.uk">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy: #1a2c44;
+    --navy-deep: #0f1c2e;
+    --cream: #f4ebdc;
+    --cream-soft: #faf4e8;
+    --rule: #d8cdb8;
+    --ink: #1a2c44;
+    --ink-muted: #5d6878;
+    --accent: #c1622f;
+    --display: 'Newsreader', Georgia, serif;
+    --body: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--navy); color: var(--cream); }
+
+  a { color: var(--navy); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* ───── Layout ───── */
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .container-wide {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ───── Masthead ───── */
+  .masthead {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 0;
+    margin-top: 24px;
+  }
+
+  .masthead-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .masthead-date,
+  .masthead-issue {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+
+  .masthead-date { text-align: left; }
+  .masthead-issue { text-align: right; }
+
+  .masthead-brand {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+
+  /* ───── Hero ───── */
+  .hero {
+    padding: 96px 0 80px;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 500;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease-out 0.1s forwards;
+  }
+
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--navy);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out 0.25s forwards;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .hero-sub {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink-muted);
+    max-width: 520px;
+    margin: 0 auto 56px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out 0.4s forwards;
+  }
+
+  /* ───── Form ───── */
+  .form-wrap {
+    max-width: 460px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out 0.55s forwards;
+  }
+
+  .form-note {
+    font-size: 13px;
+    color: var(--ink-muted);
+    margin-top: 16px;
+    letter-spacing: 0.01em;
+  }
+
+  /* Tally iframe styling */
+  .tally-embed {
+    width: 100%;
+    background: transparent;
+  }
+
+  /* Fallback form (replace with Tally embed) */
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+  }
+
+  .signup-form input,
+  .signup-form select {
+    width: 100%;
+    padding: 14px 18px;
+    background: var(--cream-soft);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    font-family: var(--body);
+    font-size: 16px;
+    color: var(--ink);
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .signup-form input:focus,
+  .signup-form select:focus {
+    outline: none;
+    border-color: var(--navy);
+    background: #fff;
+  }
+
+  .signup-form input::placeholder {
+    color: #97a0ad;
+  }
+
+  .signup-form button {
+    width: 100%;
+    padding: 16px 24px;
+    background: var(--navy);
+    color: var(--cream);
+    border: none;
+    border-radius: 2px;
+    font-family: var(--body);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    margin-top: 4px;
+  }
+
+  .signup-form button:hover {
+    background: var(--navy-deep);
+  }
+
+  .signup-form button:active {
+    transform: scale(0.99);
+  }
+
+  /* ───── Section base ───── */
+  section {
+    padding: 80px 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .section-num {
+    font-family: var(--display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 56px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(30px, 4.5vw, 44px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+    margin-bottom: 32px;
+  }
+
+  h2 em { font-style: italic; font-weight: 300; }
+
+  .lead {
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  p { margin-bottom: 18px; }
+
+  p:last-child { margin-bottom: 0; }
+
+  /* ───── Features list ───── */
+  .features {
+    list-style: none;
+    margin-top: 40px;
+  }
+
+  .features li {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .features li:last-child { border-bottom: none; }
+
+  .feat-num {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: 32px;
+    color: var(--accent);
+    line-height: 1;
+    padding-top: 4px;
+    letter-spacing: -0.02em;
+  }
+
+  .feat-content h3 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 23px;
+    color: var(--navy);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+
+  .feat-content p {
+    color: var(--ink-muted);
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* ───── Sample listing card ───── */
+  .listing-card {
+    background: var(--cream-soft);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 36px 40px;
+    margin-top: 40px;
+    position: relative;
+  }
+
+  .listing-card::before {
+    content: 'SAMPLE';
+    position: absolute;
+    top: -10px;
+    right: 24px;
+    background: var(--accent);
+    color: var(--cream);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  .listing-meta {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+
+  .listing-meta .pipe {
+    margin: 0 10px;
+    color: var(--rule);
+  }
+
+  .listing-card h4 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 26px;
+    color: var(--navy);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .listing-company {
+    font-size: 15px;
+    color: var(--ink-muted);
+    margin-bottom: 20px;
+  }
+
+  .listing-verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-bottom: 24px;
+  }
+
+  .listing-verified::before {
+    content: '✓';
+    font-weight: 700;
+  }
+
+  .listing-apply {
+    display: inline-block;
+    font-size: 14px;
+    color: var(--navy);
+    border-bottom: 1px solid var(--navy);
+    padding-bottom: 2px;
+    font-weight: 500;
+  }
+
+  .prompt-box {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px dashed var(--rule);
+  }
+
+  .prompt-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  .prompt-text {
+    font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--rule);
+    padding: 18px 20px;
+    border-radius: 2px;
+    white-space: pre-wrap;
+  }
+
+  /* ───── Verticals ───── */
+  .verticals {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .vertical {
+    padding: 32px;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    background: var(--cream-soft);
+  }
+
+  .vertical-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .vertical h3 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 24px;
+    color: var(--navy);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .vertical p {
+    font-size: 14px;
+    color: var(--ink-muted);
+    margin-bottom: 0;
+  }
+
+  .request-box {
+    margin-top: 36px;
+    padding: 28px 32px;
+    border: 1px dashed var(--rule);
+    border-radius: 3px;
+    text-align: center;
+  }
+
+  .request-box p {
+    font-size: 15px;
+    color: var(--ink-muted);
+    margin-bottom: 0;
+  }
+
+  .request-box a {
+    color: var(--accent);
+    font-weight: 500;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+  }
+
+  /* ───── Pricing ───── */
+  .pricing-card {
+    text-align: center;
+    margin-top: 40px;
+    padding: 48px 32px;
+    border: 1px solid var(--navy);
+    border-radius: 3px;
+    background: var(--cream-soft);
+  }
+
+  .price-tag {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: 64px;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: -0.03em;
+  }
+
+  .price-tag em {
+    font-style: italic;
+    font-size: 0.55em;
+    color: var(--ink-muted);
+    margin-left: 6px;
+  }
+
+  .price-detail {
+    font-size: 15px;
+    color: var(--ink-muted);
+    margin-bottom: 20px;
+  }
+
+  .price-promise {
+    font-size: 14px;
+    color: var(--ink);
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ───── FAQ ───── */
+  .faq {
+    margin-top: 32px;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .faq-question {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 24px 0;
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--navy);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    letter-spacing: -0.005em;
+  }
+
+  .faq-question:hover { color: var(--accent); }
+
+  .faq-toggle {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: 24px;
+    color: var(--ink-muted);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .faq-item.open .faq-toggle {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 400px;
+    padding-bottom: 24px;
+  }
+
+  .faq-answer p {
+    color: var(--ink-muted);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  /* ───── Second signup ───── */
+  .signup-bottom {
+    text-align: center;
+    padding: 96px 0 80px;
+    background: var(--navy);
+    color: var(--cream);
+    margin-top: 0;
+  }
+
+  .signup-bottom h2 {
+    color: var(--cream);
+  }
+
+  .signup-bottom p {
+    color: rgba(244, 235, 220, 0.7);
+    font-size: 18px;
+    margin-bottom: 40px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .signup-bottom .signup-form input,
+  .signup-bottom .signup-form select {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(244, 235, 220, 0.2);
+    color: var(--cream);
+  }
+
+  .signup-bottom .signup-form input::placeholder {
+    color: rgba(244, 235, 220, 0.45);
+  }
+
+  .signup-bottom .signup-form input:focus,
+  .signup-bottom .signup-form select:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--cream);
+  }
+
+  .signup-bottom .signup-form button {
+    background: var(--cream);
+    color: var(--navy);
+  }
+
+  .signup-bottom .signup-form button:hover {
+    background: #fff;
+  }
+
+  .signup-bottom .form-note {
+    color: rgba(244, 235, 220, 0.55);
+  }
+
+  /* ───── Footer ───── */
+  footer {
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid var(--rule);
+    background: var(--cream);
+  }
+
+  footer p {
+    font-size: 13px;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+  }
+
+  footer a { color: var(--ink-muted); }
+
+  /* ───── Animations ───── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ───── Responsive ───── */
+  @media (max-width: 640px) {
+    .container, .container-wide { padding: 0 24px; }
+    .hero { padding: 64px 0 56px; }
+    section { padding: 64px 0; }
+    .masthead-inner { grid-template-columns: 1fr; gap: 8px; text-align: center; }
+    .masthead-date, .masthead-issue { text-align: center; }
+    .features li { grid-template-columns: 1fr; gap: 8px; }
+    .feat-num { font-size: 28px; }
+    .verticals { grid-template-columns: 1fr; }
+    .listing-card { padding: 28px 24px; }
+    .prompt-text { font-size: 12px; padding: 14px 16px; }
+    .signup-bottom { padding: 72px 0 64px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─────────── MASTHEAD ─────────── -->
+<header class="container-wide">
+  <div class="masthead">
+    <div class="masthead-inner">
+      <div class="masthead-date" id="todayDate">— — —</div>
+      <div class="masthead-brand">The Daily Five</div>
+      <div class="masthead-issue">UK Edition · No. 001</div>
+    </div>
+  </div>
+</header>
+
+<!-- ─────────── HERO ─────────── -->
+<section class="hero" style="border-top: none;">
+  <div class="container">
+    <div class="hero-eyebrow">Launching soon · Free for first 100 subscribers</div>
+    <h1>Five verified UK jobs.<br><em>Every morning.</em></h1>
+    <p class="hero-sub">No ghost jobs. No recruiter spam. No Easy Apply. Just five real roles, hand-checked from company career sites — with an AI prompt to tailor your CV in under a minute.</p>
+
+    <div class="form-wrap">
+      <!--
+        ───────────────────────────────────────────────────────────────
+        TALLY FORM EMBED — REPLACE FORM ID BELOW
+        ───────────────────────────────────────────────────────────────
+        1. Go to tally.so and create a new form with these fields:
+           - Email (required)
+           - Which role are you looking for? (dropdown: Data Analyst, QA Engineer, Other - please tell us)
+           - WhatsApp number (optional)
+        2. Set redirect after submit → https://thedailyfive.co.uk/thank-you.html
+        3. Get your form ID from the embed code (looks like: 3jY7vQ)
+        4. Replace REPLACE_TALLY_FORM_ID below with your form ID
+        5. Remove the fallback HTML form below the iframe
+      -->
+      <iframe
+        class="tally-embed"
+        data-tally-src="https://tally.so/embed/REPLACE_TALLY_FORM_ID?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+        loading="lazy"
+        width="100%"
+        height="280"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        title="Sign up to The Daily Five"></iframe>
+
+      <!-- FALLBACK FORM — visible until Tally is set up. Delete this block once Tally is live. -->
+      <form class="signup-form" action="https://formspree.io/f/REPLACE_FORMSPREE_ID" method="POST">
+        <input type="email" name="email" placeholder="Your email address" required>
+        <select name="role" required>
+          <option value="">Which role are you looking for?</option>
+          <option value="Data Analyst">Data Analyst</option>
+          <option value="QA Engineer">QA Engineer</option>
+          <option value="Other">Other — I'll tell you below</option>
+        </select>
+        <input type="text" name="other_role" placeholder="If 'Other', what role? (optional)">
+        <input type="tel" name="whatsapp" placeholder="WhatsApp number (optional)">
+        <button type="submit">Reserve my free spot</button>
+      </form>
+
+      <p class="form-note">No spam. Unsubscribe with one tap. We won't share your details.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── 01 · THE PROBLEM ─────────── -->
+<section>
+  <div class="container">
+    <div class="section-num">01</div>
+    <div class="section-label">The problem</div>
+    <h2>You don't need <em>more</em> jobs to apply to.<br>You need the <em>right</em> ones.</h2>
+    <p class="lead">You open LinkedIn. You scroll for ninety minutes. Half the listings are ghost jobs that were filled three months ago. A quarter are recruiters fishing for CVs. The rest are Easy Apply funnels with 800 applicants.</p>
+    <p>By the time you've filtered the noise, you're too drained to write a proper cover letter — so you fire off a half-hearted application and tell yourself you'll do better tomorrow.</p>
+    <p>The search shouldn't cost you the energy you need for the application.</p>
+  </div>
+</section>
+
+<!-- ─────────── 02 · WHAT YOU GET ─────────── -->
+<section>
+  <div class="container">
+    <div class="section-num">02</div>
+    <div class="section-label">What you get</div>
+    <h2>Five verified roles. Every morning. <em>That's it.</em></h2>
+
+    <ul class="features">
+      <li>
+        <div class="feat-num">i</div>
+        <div class="feat-content">
+          <h3>Verified, direct from career sites</h3>
+          <p>Every listing checked manually against the company's own career page. No aggregator scrapes. No recruiter reposts. No ghost jobs. Posted with the live application link and the date we verified it.</p>
+        </div>
+      </li>
+      <li>
+        <div class="feat-num">ii</div>
+        <div class="feat-content">
+          <h3>An AI prompt with every listing</h3>
+          <p>Paste it into ChatGPT or Claude with your CV. Get role-specific tailoring — bullet points, cover letter angles, keywords — in under a minute. The tailoring is the work that actually gets responses.</p>
+        </div>
+      </li>
+      <li>
+        <div class="feat-num">iii</div>
+        <div class="feat-content">
+          <h3>Five hand-picked roles a day</h3>
+          <p>We check 150+ UK career sites every morning so you don't have to. That's roughly 2.5 hours of searching saved every day — energy you can put into applications that actually move the needle.</p>
+        </div>
+      </li>
+      <li>
+        <div class="feat-num">iv</div>
+        <div class="feat-content">
+          <h3>Built for a specific role, not everyone</h3>
+          <p>If you're a Data Analyst, you get Data Analyst roles. Not Data Engineer, not BI Consultant, not Analytics Manager. The filtering is the product.</p>
+        </div>
+      </li>
+      <li>
+        <div class="feat-num">v</div>
+        <div class="feat-content">
+          <h3>Your ambition, protected</h3>
+          <p>Job hunting in the UK is grinding. The search isn't broken because you're not trying hard enough — it's broken because the platforms have stopped caring about quality. We fix the search so you can keep the drive.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─────────── 03 · SAMPLE LISTING ─────────── -->
+<section>
+  <div class="container">
+    <div class="section-num">03</div>
+    <div class="section-label">What a listing looks like</div>
+    <h2>One real example.<br>This is what lands in your inbox.</h2>
+
+    <div class="listing-card">
+      <div class="listing-meta">
+        Data Analyst <span class="pipe">·</span> London (Hybrid) <span class="pipe">·</span> £48–58k
+      </div>
+      <h4>Senior Data Analyst, Growth</h4>
+      <p class="listing-company">Octopus Energy · 2 days ago on careers.octopus.energy</p>
+      <div class="listing-verified">Verified live · 8 Jun 2026</div>
+      <br>
+      <a href="#" class="listing-apply" onclick="return false;">Apply on careers.octopus.energy →</a>
+
+      <div class="prompt-box">
+        <div class="prompt-label">Your AI prompt for this role</div>
+        <div class="prompt-text">You are a senior CV writer. Below is my current CV and a job description for a Senior Data Analyst role at Octopus Energy. Rewrite my "Experience" section so the most relevant achievements come first. For each bullet, quantify impact, use the same vocabulary as the JD (SQL, dbt, Looker, A/B testing, growth analytics), and keep each bullet under 22 words.
+
+[paste CV]
+[paste JD]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── 04 · LAUNCH VERTICALS ─────────── -->
+<section>
+  <div class="container">
+    <div class="section-num">04</div>
+    <div class="section-label">What we cover</div>
+    <h2>Two roles at launch.<br><em>More to come, driven by you.</em></h2>
+    <p class="lead">We'd rather do two verticals brilliantly than ten badly. Manual verification takes real effort, and we won't compromise the standard just to expand the catalogue.</p>
+
+    <div class="verticals">
+      <div class="vertical">
+        <div class="vertical-label">Vertical 01</div>
+        <h3>Data Analyst</h3>
+        <p>IT sector only. UK-wide, remote-friendly where available. Five verified roles every morning.</p>
+      </div>
+      <div class="vertical">
+        <div class="vertical-label">Vertical 02</div>
+        <h3>QA Engineer</h3>
+        <p>IT sector only. Manual and automation roles. UK-wide, remote-friendly where available.</p>
+      </div>
+    </div>
+
+    <div class="request-box">
+      <p>Your role isn't covered yet? Email <a href="mailto:hello@thedailyfive.co.uk">hello@thedailyfive.co.uk</a> with the role title and we'll add it to the queue. The more requests, the faster it ships.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── 05 · PRICING ─────────── -->
+<section>
+  <div class="container">
+    <div class="section-num">05</div>
+    <div class="section-label">Pricing</div>
+    <h2>Free for the first hundred.</h2>
+    <p class="lead">We're keeping it free for early subscribers because we'd rather have a hundred people who genuinely use the service than a thousand who signed up out of curiosity.</p>
+
+    <div class="pricing-card">
+      <div class="price-tag">£0<em>/month</em></div>
+      <div class="price-detail">For the first 100 subscribers · Forever</div>
+      <p class="price-promise">Paid tiers will come later for premium features — more roles per day, additional verticals, application help. Early subscribers keep free access to the core service as our thank-you for backing this at the start.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── 06 · FAQ ─────────── -->
+<section>
+  <div class="container">
+    <div class="section-num">06</div>
+    <div class="section-label">Questions</div>
+    <h2>The honest answers.</h2>
+
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>What does "verified" actually mean?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Every listing is checked manually against the company's own career site on the day we share it. The role must be live, the application link must work, the JD must be specific (not a generic talent-pool funnel), and it must not be a recruiter reposting a role they don't actually have. We post the date we verified it so you can trust what you're getting.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>How is this different from LinkedIn or Indeed?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>LinkedIn and Indeed are aggregators optimised for volume. Their incentive is to show you as many listings as possible, including ones that aren't really open. The Daily Five does the opposite — fewer, manually checked, sourced directly from the employer's own site. We don't take fees from employers, so we have no reason to inflate the catalogue.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>What if my role isn't covered?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Email <a href="mailto:hello@thedailyfive.co.uk">hello@thedailyfive.co.uk</a> with the role title you're hunting for. We add new verticals based on demand — the more requests we get for a role, the faster it gets added. Early subscribers shape the roadmap directly.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Is this a recruitment agency?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>No. We don't take placement fees from employers, we don't pass your CV to anyone, and we have no commercial relationships with the companies whose listings we share. We just verify and forward. Our only relationship is with our subscribers.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>How does delivery work?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Listings are delivered every morning via a WhatsApp Channel. After you sign up, you'll get the invite link to join. Channels are one-way (broadcast only), so you get the listings but nobody can spam the feed. You can mute or leave any time.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Who runs The Daily Five?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>The Daily Five is run by a QA professional based in Newcastle who has been on the receiving end of the UK job hunt — and built this out of that frustration. You can reach out any time at <a href="mailto:hello@thedailyfive.co.uk">hello@thedailyfive.co.uk</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── SECOND SIGNUP ─────────── -->
+<section class="signup-bottom" style="border-top: none;">
+  <div class="container">
+    <h2>Five roles tomorrow.<br><em>One signup today.</em></h2>
+    <p>Free for the first 100 subscribers. No card, no commitment, no spam.</p>
+
+    <div class="form-wrap">
+      <form class="signup-form" action="https://formspree.io/f/REPLACE_FORMSPREE_ID" method="POST">
+        <input type="email" name="email" placeholder="Your email address" required>
+        <select name="role" required>
+          <option value="">Which role are you looking for?</option>
+          <option value="Data Analyst">Data Analyst</option>
+          <option value="QA Engineer">QA Engineer</option>
+          <option value="Other">Other — I'll tell you below</option>
+        </select>
+        <input type="text" name="other_role" placeholder="If 'Other', what role? (optional)">
+        <input type="tel" name="whatsapp" placeholder="WhatsApp number (optional)">
+        <button type="submit">Reserve my free spot</button>
+      </form>
+      <p class="form-note">Unsubscribe with one tap. We won't share your details.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── FOOTER ─────────── -->
+<footer>
+  <div class="container">
+    <p><strong>The Daily Five</strong> · Five verified UK jobs every morning</p>
+    <p>Built in Newcastle · <a href="mailto:hello@thedailyfive.co.uk">hello@thedailyfive.co.uk</a></p>
+    <p style="margin-top: 14px;">© 2026 The Daily Five</p>
+  </div>
+</footer>
+
+<!-- Tally embed script (loads the form once you've added your form ID above) -->
+<script async src="https://tally.so/widgets/embed.js"></script>
+
+<script>
+  // Date in the masthead
+  const today = new Date();
+  const opts = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+  const dateStr = today.toLocaleDateString('en-GB', opts).toUpperCase();
+  document.getElementById('todayDate').textContent = dateStr;
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Reveal-on-scroll for sections
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('section').forEach(s => {
+    s.classList.add('reveal');
+    observer.observe(s);
+  });
+</script>
+
+</body>
+</html>
